@@ -21,6 +21,7 @@ class PicturesController < ApplicationController
 
   def create
     @picture = Picture.new(picture_params)
+    @picture.user_id = current_user.id
     respond_to do |format|
       if @picture.save
         format.html { redirect_to @picture, notice: '投稿作成しました！' }
@@ -45,6 +46,7 @@ class PicturesController < ApplicationController
   end
 
   def destroy
+    @picture.user_id = current_user.id
     @picture.destroy
     respond_to do |format|
       format.html { redirect_to pictures_url, notice: '投稿削除しました！' }
@@ -54,6 +56,7 @@ class PicturesController < ApplicationController
 
   def confirm
     @picture = Picture.new(picture_params)
+    @picture.user_id = current_user.id
     render :new if @picture.invalid?
   end
 

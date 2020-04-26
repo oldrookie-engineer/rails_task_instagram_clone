@@ -18,5 +18,7 @@
   <%= f.password_field :password %>
   <%= f.label :確認用パスワード %>
   <%= f.password_field :password_confirmation %>
+  <%= f.label :プロフィール画像 %>
+  <%= f.file_field :image %>
   <%= f.submit "新規登録" %>
 <% end %>
