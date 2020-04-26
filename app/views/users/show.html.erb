@@ -1,0 +1,6 @@
+<h1><%= @user.name %>のページ</h1>
+<p>プロフィール画像</p>
+<img src="<%= @user.image %>">
+<p>名前: <%= @user.name %></p>
+<p>メールアドレス: <%= @user.email %></p>
+<%= link_to '編集', users_path(@user.id )%>
