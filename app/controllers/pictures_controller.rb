@@ -21,7 +21,6 @@ class PicturesController < ApplicationController
 
   def create
     @picture = Picture.new(picture_params)
-
     respond_to do |format|
       if @picture.save
         format.html { redirect_to @picture, notice: '投稿作成しました！' }
@@ -55,6 +54,7 @@ class PicturesController < ApplicationController
 
   def confirm
     @picture = Picture.new(picture_params)
+    render :new if @picture.invalid?
   end
 
   private
@@ -63,6 +63,6 @@ class PicturesController < ApplicationController
     end
 
     def picture_params
-      params.require(:picture).permit(:image, :image_cache)
+      params.require(:picture).permit(:image, :image_cache, :content)
     end
 end
