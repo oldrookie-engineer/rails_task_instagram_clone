@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+
+  def index
+    @users = User.all
+  end
 
   def new
     @user = User.new
@@ -28,6 +33,13 @@ class UsersController < ApplicationController
       redirect_to user_path(@user.id), notice: 'プロフィール編集しました'
     else
       render :edit
+    end
+  end
+
+  def ensure_correct_user
+    @user = User.find_by(id: params[:id])
+    if @user.id != current_user.id
+      redirect_to users_path
     end
   end
 

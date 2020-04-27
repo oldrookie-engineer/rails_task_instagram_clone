@@ -3,7 +3,8 @@
 <p>プロフィール画像</p>
 <img src="<%= @user.image %>">
 <p>名前: <%= @user.name %></p>
-<p>メールアドレス: <%= @user.email %></p>
-<%= link_to 'プロフィール編集', edit_user_path(current_user.id) %>
+<p>メールアドレス: <%= @user.email if @user.id == current_user.id %></p>
+<%= link_to 'プロフィール編集', edit_user_path(current_user.id) if @user.id == current_user.id %>
 <%= link_to '新規投稿', new_picture_path %>
 <%= link_to '投稿一覧', pictures_path %>
+<%= link_to '投稿者一覧', users_path %>

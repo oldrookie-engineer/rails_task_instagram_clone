@@ -1,0 +1,25 @@
+<h1>お気に入り投稿一覧</h1>
+<table>
+  <thead>
+    <tr>
+      <th>お気に入りした投稿</th>
+      <th>コメント</th>
+      <th>投稿者</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @favorites.each do |favorite| %>
+      <tr>
+        <td><%= favorite.picture.image %></td>
+        <td><%= favorite.picture.content %></td>
+        <td><%= favorite.picture.user.name %></td>
+        <td><%= link_to '投稿詳細', picture_path(favorite.picture.id) %></td>
+        <td><%= link_to '投稿者プロフィール', user_path(favorite.picture.user.id) %></td>
+        <td><%= link_to '💔', favorite_path(favorite.id), method: :delete, class: 'btn btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to '新規投稿', new_picture_path %>
+<%= link_to '投稿一覧', pictures_path %>

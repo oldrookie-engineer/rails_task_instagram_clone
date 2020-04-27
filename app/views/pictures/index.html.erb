@@ -16,11 +16,13 @@
         <td><%= picture.content %></td>
         <td><%= picture.user.name %></td>
         <td><%= link_to '詳細', picture %></td>
-        <td><%= link_to '編集', edit_picture_path(picture) %></td>
-        <td><%= link_to '削除', picture, method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
+        <td><%= link_to '編集', edit_picture_path(picture) if picture.user_id == current_user.id %></td>
+        <td><%= link_to '削除', picture, method: :delete, data: { confirm: '本当に削除していいですか？' } if picture.user_id == current_user.id %></td>
+        <td><%= link_to '❤️', favorites_path(picture_id: picture.id), method: :post, class: 'btn btn-primary' if picture.user.id != current_user.id %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <br>
 <%= link_to '新規投稿', new_picture_path %>
+<%= link_to 'お気に入り投稿一覧', favorites_path %>
