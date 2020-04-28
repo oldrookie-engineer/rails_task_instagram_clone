@@ -1,25 +1,29 @@
-<h1>お気に入り投稿一覧</h1>
-<table>
-  <thead>
-    <tr>
-      <th>お気に入りした投稿</th>
-      <th>コメント</th>
-      <th>投稿者</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @favorites.each do |favorite| %>
-      <tr>
-        <td><%= favorite.picture.image %></td>
-        <td><%= favorite.picture.content %></td>
-        <td><%= favorite.picture.user.name %></td>
-        <td><%= link_to '投稿詳細', picture_path(favorite.picture.id) %></td>
-        <td><%= link_to '投稿者プロフィール', user_path(favorite.picture.user.id) %></td>
-        <td><%= link_to '💔', favorite_path(favorite.id), method: :delete, class: 'btn btn-danger' %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
-<%= link_to '新規投稿', new_picture_path %>
-<%= link_to '投稿一覧', pictures_path %>
+<div class="main">
+  <h2>お気に入り投稿一覧</h2><br><br>
+  <div>
+    <table class="favorite-list">
+      <thead>
+        <tr>
+          <th>投稿画像</th>
+          <th>コメント</th>
+          <th>投稿者</th>
+          <th>メニュー</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @favorites.each do |favorite| %>
+          <tr>
+            <td><%= link_to image_tag("camera.png", class: "image"), picture_path(favorite.picture.id) %></td>
+            <td><%= favorite.picture.content %></td>
+            <td><%= link_to favorite.picture.user.name, user_path(favorite.picture.user.id) %></td>
+            <td><%= link_to 'お気に入り解除', favorite_path(favorite.id), method: :delete, class: 'btn', style: "background: pink" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div><br>
+  <div class="link-menu">
+    <%= link_to '新規投稿', new_picture_path , class: 'btn btn-primary' %>
+    <%= link_to '投稿一覧', pictures_path, class: 'btn btn-warning' %>
+  </div>
+</div>

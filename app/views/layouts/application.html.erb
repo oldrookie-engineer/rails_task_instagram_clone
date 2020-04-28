@@ -4,22 +4,34 @@
     <title>InstagramClone</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "#{key}") %>
-    <% end %>
-    <% if logged_in? %>
-      <%= link_to "プロフィール", user_path(current_user.id) %>
-      <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
-    <% else %>
-      <%= link_to "新規登録", new_user_path %>
-      <%= link_to "ログイン", new_session_path %>
-    <% end %>
+    <header class="header clearfix">
+      <div class="title">
+        <h1>Clone's <span class="logo">'I'</span></h1>
+      </div>
+      <% if logged_in? %>
+      <ul>
+        <li><%= link_to "プロフィール", user_path(current_user.id) %></li>
+        <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
+      </ul>
+      <% else %>
+      <ul>
+        <li><%= link_to "新規登録", new_user_path %></li>
+        <li><%= link_to "ログイン", new_session_path %></li>
+      </ul>
+      <% end %>
+    </header>
+      <% flash.each do |key, value| %>
+        <div class="alert">
+          <%= content_tag(:div, value, class: "#{key}") %>
+        </div>
+      <% end %>
     <%= yield %>
+    <footer>Copyright FY.Inc.</footer>
   </body>
 </html>

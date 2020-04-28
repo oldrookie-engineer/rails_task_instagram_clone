@@ -1,28 +1,31 @@
-<h1>投稿一覧</h1>
-<p id="notice"><%= notice %></p>
-<table>
-  <thead>
-    <tr>
-      <th>画像</th>
-      <th>内容</th>
-      <th>投稿者</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @pictures.each do |picture| %>
+<div class="main">
+  <h2>投稿一覧</h2>
+  <p id="notice"><%= notice %></p><br><br>
+  <table>
+    <thead>
       <tr>
-        <td><%= picture.image %></td>
-        <td><%= picture.content %></td>
-        <td><%= picture.user.name %></td>
-        <td><%= link_to '詳細', picture %></td>
-        <td><%= link_to '編集', edit_picture_path(picture) if picture.user_id == current_user.id %></td>
-        <td><%= link_to '削除', picture, method: :delete, data: { confirm: '本当に削除していいですか？' } if picture.user_id == current_user.id %></td>
-        <td><%= link_to '❤️', favorites_path(picture_id: picture.id), method: :post, class: 'btn btn-primary' if picture.user.id != current_user.id %></td>
+        <th>投稿画像</th>
+        <th>コメント</th>
+        <th>投稿者</th>
+        <th colspan="3">メニュー</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
-<%= link_to '新規投稿', new_picture_path %>
-<%= link_to 'お気に入り投稿一覧', favorites_path %>
+    </thead>
+    <tbody>
+      <% @pictures.each do |picture| %>
+        <tr>
+          <td class="post-item"><%= link_to image_tag("camera.png", class: "image"), picture %></td>
+          <td><%= picture.content %></td>
+          <td class="post-item"><%= link_to picture.user.name, user_path(picture.user_id) %></td>
+          <td><%= link_to '編集', edit_picture_path(picture) if picture.user_id == current_user.id %></td>
+          <td><%= link_to '削除', picture, method: :delete, data: { confirm: '本当に削除していいですか？' } if picture.user_id == current_user.id %></td>
+          <td><%= link_to 'お気に入り登録', favorites_path(picture_id: picture.id), method: :post, class: 'btn', style: "background: pink" if picture.user.id != current_user.id %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <div class="link-menu">
+    <%= link_to '新規投稿', new_picture_path, class: 'btn btn-primary' %>
+    <%= link_to 'お気に入り投稿一覧', favorites_path, class: 'btn', style: "background: pink"%>
+  </div>
+</div>

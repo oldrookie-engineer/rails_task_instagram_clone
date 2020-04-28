@@ -1,17 +1,22 @@
-<h1>プロフィール編集</h1>
-<%= form_with(model: @user, local: true, method: :patch) do |form| %>
-  <div class="field">
-    <%= form.label :プロフィール画像 %>
-    <p><%= image_tag(@user.image.url) if @user.image && @user.image.url %></p>
-    <%= form.file_field :image %>
-    <%= form.hidden_field :image_cache %><br>
-    <%= form.label :名前 %><br>
-    <%= form.text_field :name %><br>
-    <%= form.label :メールアドレス %><br>
-    <%= form.text_field :email %>
-    <%= form.hidden_field :password %>
+<div class="main">
+  <h2>プロフィール編集</h2>
+  <%= form_with(model: @user, local: true, method: :patch) do |form| %>
+  <div class="edit-form">
+    <div class="field">
+      <%= form.label :プロフィール画像 %>
+      <p><%= image_tag(@user.image.url) if @user.image && @user.image.url %></p>
+      <p><%= form.file_field :image %></p>
+      <%= form.hidden_field :image_cache %>
+      <%= form.label :名前 %><br>
+      <%= form.text_field :name %><br>
+      <%= form.label :メールアドレス %><br>
+      <%= form.text_field :email %>
+      <%= form.hidden_field :password %>
+    </div>
+    <div class="actions">
+      <%= form.submit "登録" %>
+    </div><br><br><br>
+    <%= link_to '新規投稿', new_picture_path, class: 'btn btn-primary' %>
   </div>
-  <div class="actions">
-    <%= form.submit "登録" %>
-  </div>
-<% end %>
+  <% end %>
+</div>

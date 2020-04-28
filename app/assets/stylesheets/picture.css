@@ -1,0 +1,83 @@
+.post-form {
+  width: 300px;
+  height: 400px;
+  margin: 0 auto;
+  padding: 20px 20px;
+  margin-bottom: 10px;
+}
+
+.actions {
+  margin-top: 30px;
+}
+
+input[type="submit"] {
+  width: 80px;
+}
+
+.link-menu {
+  padding-bottom: 10px;
+}
+
+.link-menu a {
+  font-size: 15px;
+  margin-right: 20px;
+  margin-top: 50px;
+  color: white;
+}
+
+.favorite-list {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px 20px;
+  margin-bottom: 10px;
+}
+
+table {
+  margin: 0 auto;
+  table-layout: fixed;
+  width: 90%;
+}
+
+.faborite tr,th,td {
+  text-align: center;
+  border: 2px solid white;
+  overflow: hidden;
+  height: 30px;
+}
+
+.contributer-list {
+  width: 500px;
+  height: 100%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.btn {
+  color: white;
+}
+
+.edit-menu {
+  margin-top: 100px;
+}
+
+.confirm-view label {
+  font-size: 15px;
+}
+
+.post-detail p {
+  font-size: 20px;
+}
+
+td img {
+  width: 10px;
+}
+
+.post-item a {
+  color: black;
+  text-decoration: underline;
+}
+
+.post-item img {
+  text-decoration: underline;
+}

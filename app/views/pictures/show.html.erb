@@ -1,8 +1,16 @@
-<h1>投稿詳細</h1>
-<p id="notice"><%= notice %></p>
-<p>
-  <strong>画像:</strong><br>
-  <%= image_tag @picture.image.url %>
-</p>
-<%= link_to '編集', edit_picture_path(@picture) if @picture.user_id == current_user.id %>
-<%= link_to '投稿一覧', pictures_path %>
+<div class="main">
+  <div class="post-detail">
+    <h2>投稿詳細</h2><br>
+    <p id="notice"><%= notice %></p>
+    <p>
+      <strong>画像</strong><br><br>
+      <%= image_tag @picture.image.url %><br><br><br>
+      <strong>内容</strong><br><br>
+      <%= @picture.content %>
+    </p>
+    <div class="link-menu">
+      <%= link_to '編集', edit_picture_path(@picture), class: 'btn', style:'background:#9370DB' if @picture.user_id == current_user.id %>
+      <%= link_to '投稿一覧', pictures_path, class: 'btn btn-warning' %>
+    </div>
+  </div>
+</div>

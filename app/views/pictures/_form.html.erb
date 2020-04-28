@@ -12,15 +12,17 @@
 <% end %>
 
 <%= form_with(model: picture, local: true, url: choose_new_or_edit) do |form| %>
+<div class="post-form">
   <div class="field">
     <%= form.label :画像 %>
     <p><%= image_tag(@picture.image.url) if @picture.image && @picture.image.url %></p>
     <%= form.file_field :image %>
     <%= form.hidden_field :image_cache %><br>
     <%= form.label :内容 %><br>
-    <%= form.text_field :content %>
+    <%= form.text_area :content %>
   </div>
   <div class="actions">
     <%= form.submit "投稿" %>
   </div>
+</div>
 <% end %>

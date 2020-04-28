@@ -23,13 +23,17 @@ class PicturesController < ApplicationController
   def create
     @picture = Picture.new(picture_params)
     @picture.user_id = current_user.id
-    respond_to do |format|
-      if @picture.save
-        format.html { redirect_to @picture, notice: '投稿作成しました！' }
-        format.json { render :show, status: :created, location: @picture }
-      else
-        format.html { render :new }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
+    if params[:back]
+      render :new
+    else
+      respond_to do |format|
+        if @picture.save
+          format.html { redirect_to @picture, notice: '投稿作成しました！' }
+          format.json { render :show, status: :created, location: @picture }
+        else
+          format.html { render :new }
+          format.json { render json: @picture.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -62,11 +66,11 @@ class PicturesController < ApplicationController
   end
 
   private
-    def set_picture
-      @picture = Picture.find(params[:id])
-    end
+  def set_picture
+    @picture = Picture.find(params[:id])
+  end
 
-    def picture_params
-      params.require(:picture).permit(:image, :image_cache, :content)
-    end
+  def picture_params
+    params.require(:picture).permit(:image, :image_cache, :content)
+  end
 end
